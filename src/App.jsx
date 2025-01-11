@@ -1,5 +1,6 @@
 import React from "react";
 import Navbar from "./components/Navbar";
+import Header from "./components/Header";
 import LandingPage from "./pages/LandingPage";
 import AboutPage from "./pages/AboutPage";
 import ProductsPage from "./pages/ProductsPage";
@@ -10,14 +11,17 @@ import { Routes, Route } from "react-router";
 const App = () => {
 	return (
 		<div>
+			<Header /> {/* Billboard displayed across all pages */}
 			<Navbar />
-			<Routes>
-				<Route path="/" element={<LandingPage />} />
-				<Route path="/about" element={<AboutPage />} />
-				<Route path="/products" element={<ProductsPage />} />
-				<Route path="/policies" element={<PoliciesPage />} />
-				<Route path="/contact" element={<ContactPage />} />
-			</Routes>
+			<main>
+				<Routes>
+					<Route path="/" element={<LandingPage />} />
+					<Route path="/about" element={<AboutPage />} />
+					<Route path="/products" element={<ProductsPage />} />
+					<Route path="/policies" element={<PoliciesPage />} />
+					<Route path="/contact" element={<ContactPage />} />
+				</Routes>
+			</main>
 		</div>
 	);
 };

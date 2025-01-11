@@ -1,32 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
+import "../App.css";
 
 const ProductsPage = () => {
-	const products = [
-		{ id: 1, name: "Product 1", price: "$20", description: "A great product." },
-		{
-			id: 2,
-			name: "Product 2",
-			price: "$35",
-			description: "Another great product.",
-		},
-	];
+	const [query, setQuery] = useState("");
+	const [products, setProducts] = useState([]);
+
+	const searchEbayProducts = async () => {
+		try {
+			const response = await axios.get("/api/ebay/search", {
+				params: { q: query },
+			});
+			setProducts(response.data || []);
+		} catch (error) {
+			console.error("Error fetching products:", error.message);
+		}
+	};
 
 	return (
-		<div style={{ padding: "2rem" }}>
-			<h1>Our Products</h1>
-			<div style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+		<div className="container">
+			<h1>Search eBay Products</h1>
+			<div className="search-box">
+				<input
+					type="text"
+					placeholder="Search for products"
+					value={query}
+					onChange={(e) => setQuery(e.target.value)}
+				/>
+				<button className="search-button" onClick={searchEbayProducts}>
+					Search
+				</button>
+			</div>
+			<div className="products">
 				{products.map((product) => (
-					<div
-						key={product.id}
-						style={{
-							border: "1px solid #ccc",
-							padding: "1rem",
-							width: "200px",
-						}}
-					>
-						<h3>{product.name}</h3>
-						<p>{product.description}</p>
-						<p>{product.price}</p>
+					<div className="product-card" key={product.itemId}>
+						<h3>{product.title}</h3>
+						<p>
+							{product.price?.value} {product.price?.currency}
+						</p>
+						<a
+							href={product.itemWebUrl}
+							target="_blank"
+							rel="noopener noreferrer"
+						>
+							View on eBay
+						</a>
 					</div>
 				))}
 			</div>
