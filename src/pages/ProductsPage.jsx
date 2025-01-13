@@ -196,7 +196,7 @@ const ProductsPage = () => {
 							<>
 								<h3>{item.title}</h3>
 								<p>
-									{item.price} {item.currency}
+									${item.price} {item.currency}
 								</p>
 								<a href={item.link} target="_blank" rel="noopener noreferrer">
 									View Product

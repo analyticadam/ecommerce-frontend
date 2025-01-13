@@ -13,36 +13,36 @@ body {
 /* Header styles */
 .header {
 	width: 100%; /* Full width of the viewport */
-	height: 80px; /* Fixed height for the header */
-	background-color: #f8f9fa; /* Light background for contrast */
+	height: 200px; /* Increase height to show more of the image */
+	background: radial-gradient(circle, #237ba5, #000000),
+		url("public/images/eBay Store Billboard 1280x290 px.jpeg");
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: contain;
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
-	position: fixed; /* Fixed at the top of the page */
+	position: fixed; /*Fixed at the top of the page */
 	top: 0;
 	left: 0;
-	z-index: 1100; /* Ensure it's above other elements */
+	/* z-index: 1100; Ensure it's above other elements */
 	display: flex;
 	align-items: center;
 	justify-content: center;
-}
-
-.header-image {
-	width: 100%; /* Ensure the image spans the header width */
-	height: 100%; /* Match the header height */
-	object-fit: cover; /* Ensure the image scales proportionally */
+	overflow: hidden; /* Ensure no unwanted overflow */
+	box-sizing: border-box;
 }
 
 /* Navbar container */
 .navbar {
 	width: 200px; /* Fixed width */
-	height: calc(100vh - 80px); /* Full height minus the header */
+	height: calc(100vh - 150px); /* Full height minus the new header height */
 	background-color: #343a40; /* Dark background */
 	color: white;
 	position: fixed; /* Fixed to the left side */
-	top: 80px; /* Below the header */
+	top: 200px; /* Adjusted for the new header height */
 	left: 0;
 	overflow-y: auto; /* Allow vertical scrolling */
 	overflow-x: hidden; /* Prevent horizontal scrolling */
-	z-index: 1000; /* Keep above main content */
+	/* z-index: 1000; Keep above main content */
 	padding: 10px;
 }
 
@@ -72,7 +72,7 @@ body {
 /* Main content */
 main {
 	margin-left: 200px; /* Leave space for the navbar */
-	margin-top: 80px; /* Leave space for the header */
+	margin-top: 220px; /* Leave space for the header */
 	padding: 20px;
 	min-height: calc(100vh - 80px); /* Fill available space */
 	background-color: #ffffff; /* Light background for content */
