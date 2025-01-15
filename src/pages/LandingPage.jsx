@@ -1,6 +1,8 @@
 import React from "react";
+import SignUpForm from "../components/Register.jsx";
+import LoginForm from "../components/Login.jsx";
 
-const LandingPage = () => {
+const LandingPage = (props) => {
 	return (
 		<div>
 			<header
@@ -18,6 +20,8 @@ const LandingPage = () => {
 					Shop Now
 				</button>
 			</header>
+			<SignUpForm className="signLogForm" setUser={props.setUser} />
+			<LoginForm className="signLogForm" setUser={props.setUser} />
 		</div>
 	);
 };
