@@ -1,10 +1,10 @@
 import { useState } from "react";
-// adding in auth, i am importing SignUp from utilities
+// Adding in auth, I am importing SignUp from utilities
 import { signUp } from "../utilities/users-services";
 
 function SignUpForm(props) {
 	const [formData, setFormData] = useState({
-		name: "",
+		username: "", // Changed "name" to "username"
 		email: "",
 		password: "",
 		confirmPassword: "",
@@ -17,52 +17,58 @@ function SignUpForm(props) {
 	};
 
 	const handleSubmit = async (e) => {
-		e.preventDefault();
-		console.log(formData);
-		// ** this is where we will eventually add this to our database
-		// but through utilities/user - services (so im making util functions to handle api)
+		e.preventDefault(); // Prevent default form submission behavior
+		console.log(formData); // Optional: Log the form data before processing
+
 		try {
-			// set this up to be able to add a new user
+			// Set this up to be able to add a new user
 			const submitData = { ...formData };
-			delete submitData.confirmPassword;
-			console.log(submitData);
+			delete submitData.confirmPassword; // Remove the confirmPassword field
+			console.log(submitData); // Log the payload being sent to the backend
+
+			// Send the data to the backend
 			const user = await signUp(submitData);
-			console.log(user);
+			console.log(user); // Optional: Log the user data received from the backend
+
+			// Use the setUser prop to update the user state in the parent component
 			props.setUser(user);
 		} catch (err) {
-			// ! later add messages based on what actually failed
-			setError("Sign up failed - try again");
+			// Handle errors
+			setError("Sign up failed - please try again");
 		}
 	};
 
 	return (
 		<>
 			<div className="signLogForm">
-				<p>Sign Up to start adding your personal images and audio</p>
+				<p>Please register for an Account below</p>
+				<br />
 				<form autoComplete="off" onSubmit={handleSubmit}>
-					<label>Display name:</label>
+					<label>Display Name:</label>
 					<br />
 					<input
 						type="text"
-						name="name"
-						value={formData.name}
+						name="username" // Changed "name" to "username"
+						value={formData.username}
 						onChange={handleChange}
 						placeholder="Display Name"
 						required
 					/>
 					<br />
-					<label>Email address (needs to be unique)</label>
+					<label>
+						Please enter your e-mail address here: (must be a valid email)
+					</label>
 					<br />
 					<input
 						type="email"
 						name="email"
 						value={formData.email}
 						onChange={handleChange}
-						placeholder="email address will be your login"
+						placeholder="Please enter your email address"
 						required
 					/>
 					<br />
-					<label>Password</label>
+					<label>Password:</label>
 					<br />
 					<input
 						type="password"
@@ -73,14 +79,14 @@ function SignUpForm(props) {
 						required
 					/>
 					<br />
-					<label>Confirm Password</label>
+					<label>Confirm Password:</label>
 					<br />
 					<input
 						type="password"
 						name="confirmPassword"
 						value={formData.confirmPassword}
 						onChange={handleChange}
-						placeholder="Must match password"
+						placeholder="Passwords must match"
 						required
 					/>
 					<br />
@@ -88,7 +94,7 @@ function SignUpForm(props) {
 						type="submit"
 						disabled={formData.password !== formData.confirmPassword}
 					>
-						SIGN UP now
+						Sign Up
 					</button>
 				</form>
 				<p>{error}</p>

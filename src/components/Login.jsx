@@ -1,11 +1,11 @@
 import { useState } from "react";
 import userServices from "../utilities/users-services";
-import { useNavigate } from "react-router"; // allows for navigation without clicking
+import { useNavigate } from "react-router"; // Allows for navigation without clicking
 
 function LoginForm() {
 	const [user, setUser] = useState("");
 	const [formData, setFormData] = useState({
-		email: "",
+		username: "", // Changed "email" to "username" to match backend expectations
 		password: "",
 	});
 
@@ -14,55 +14,60 @@ function LoginForm() {
 
 	function handleChange(e) {
 		setFormData({ ...formData, [e.target.name]: e.target.value });
-		setError("");
+		setError(""); // Clear the error on input change
 	}
 
 	async function handleSubmit(e) {
-		e.preventDefault();
+		e.preventDefault(); // Prevent default form submission behavior
+
+		// Construct the credentials payload
 		const credentials = { ...formData };
-		console.log(credentials);
+		console.log("Payload being sent to backend:", credentials); // Log the payload
+
 		try {
-			// the promise returned by the login service method will resolve to the user
-			// object includes in the payload of the JWT
+			// Send credentials to the backend
 			const user = await userServices.login(credentials);
-			console.log(user);
-			setUser(user.name);
-			navigate("/profile/", { state: { user } }); // first arg is location to navigate to, second arg is the location it stores the locations your are navigating to and from.
+			console.log("User received from backend:", user); // Log the response
+			setUser(user.username); // Update user state
+			navigate("/profile/", { state: { user } }); // Navigate to profile page
 		} catch (err) {
-			console.log("Error caught", err);
+			console.log("Error caught:", err); // Log the error
 			const errorMessage =
 				err.response?.data?.message || "Log in Failed - Try Again";
-			setError(errorMessage);
+			setError(errorMessage); // Display error to the user
 		}
 	}
+
 	return (
 		<>
 			<div className="signLogForm">
-				<p>Log In to add and edit your own audio and images for words</p>
+				<br />
+				<p>Log In for Admin Access</p>
+				<br />
 				<form autoComplete="off" onSubmit={handleSubmit}>
-					<label>Email address</label>
+					<label>Username:</label>
 					<br />
 					<input
-						type="email"
-						name="email"
-						value={formData.email}
-						onChange={handleChange}
-						placeholder="email address will be your login"
+						type="text"
+						name="username" // Changed "email" to "username"
+						value={formData.username}
+						onChange={handleChange} // Update state on input change
+						placeholder="Please enter your username for login"
 						required
 					/>
 					<br />
-					<label>Password</label>
+					<label>Password:</label>
 					<br />
 					<input
 						type="password"
 						name="password"
 						value={formData.password}
-						onChange={handleChange}
-						placeholder="password"
+						onChange={handleChange} // Update state on input change
+						placeholder="Please Enter Password Here"
 						required
 					/>
 					<br />
-					<button type="submit">LOG IN</button>
+					<button type="submit">Log In Admin</button>
 				</form>
 				<p>{error}</p>
 			</div>
