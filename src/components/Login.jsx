@@ -29,7 +29,7 @@ function LoginForm() {
 			const user = await userServices.login(credentials);
 			console.log("User received from backend:", user); // Log the response
 			setUser(user.username); // Update user state
-			navigate("/profile/", { state: { user } }); // Navigate to profile page
+			navigate("/products/", { state: { user } }); // Navigate to Products page
 		} catch (err) {
 			console.log("Error caught:", err); // Log the error
 			const errorMessage =

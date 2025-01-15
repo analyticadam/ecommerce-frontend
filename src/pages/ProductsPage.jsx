@@ -1,13 +1,17 @@
 import React, { useState, useEffect } from "react"; // Import React and necessary hooks for state management
 import axios from "axios"; // Import Axios for making HTTP requests
 import "../App.css"; // Import CSS for styling
+import { useLocation } from "react-router";
+import { getUser } from "../utilities/users-services";
+``;
 
 const BASE_URL = "http://localhost:5000/api"; // Updated to match backend server URL
 
 const ProductsPage = () => {
+	const location = useLocation();
 	// State for storing the search query entered by the user
 	const [query, setQuery] = useState("");
-
+	const [user, setUser] = useState(null);
 	// State for storing the list of products fetched from the backend
 	const [products, setProducts] = useState([]);
 
@@ -24,6 +28,18 @@ const ProductsPage = () => {
 
 	// State for handling edit mode
 	const [editItem, setEditItem] = useState(null);
+	useEffect(() => {
+		async function fetchUser() {
+			const userData = await getUser();
+			console.log(userData.username);
+			setUser(userData.username);
+		}
+		if (location.state?.user) {
+			setUser(location.state.user);
+		} else {
+			fetchUser();
+		}
+	}, [location]);
 
 	// Fetch existing items from the backend when the component mounts
 	useEffect(() => {
@@ -99,7 +115,7 @@ const ProductsPage = () => {
 
 	return (
 		<div className="container">
-			<h1>Manage Products</h1>
+			<h1>Manage Products, {user}!</h1>
 			{error && <p style={{ color: "red" }}>{error}</p>}
 
 			{/* Search for eBay Products */}
@@ -116,38 +132,42 @@ const ProductsPage = () => {
 			</div>
 
 			{/* Form to Add New Item */}
-			<form onSubmit={handleAddItem}>
-				<h2>Add New Item</h2>
-				<input
-					type="text"
-					placeholder="Title"
-					value={newItem.title}
-					onChange={(e) => setNewItem({ ...newItem, title: e.target.value })}
-					required
-				/>
-				<input
-					type="number"
-					placeholder="Price"
-					value={newItem.price}
-					onChange={(e) => setNewItem({ ...newItem, price: e.target.value })}
-					required
-				/>
-				<input
-					type="text"
-					placeholder="Currency"
-					value={newItem.currency}
-					onChange={(e) => setNewItem({ ...newItem, currency: e.target.value })}
-					required
-				/>
-				<input
-					type="text"
-					placeholder="Link"
-					value={newItem.link}
-					onChange={(e) => setNewItem({ ...newItem, link: e.target.value })}
-					required
-				/>
-				<button type="submit">Add Item</button>
-			</form>
+			{user ? (
+				<form onSubmit={handleAddItem}>
+					<h2>Add New Item</h2>
+					<input
+						type="text"
+						placeholder="Title"
+						value={newItem.title}
+						onChange={(e) => setNewItem({ ...newItem, title: e.target.value })}
+						required
+					/>
+					<input
+						type="number"
+						placeholder="Price"
+						value={newItem.price}
+						onChange={(e) => setNewItem({ ...newItem, price: e.target.value })}
+						required
+					/>
+					<input
+						type="text"
+						placeholder="Currency"
+						value={newItem.currency}
+						onChange={(e) =>
+							setNewItem({ ...newItem, currency: e.target.value })
+						}
+						required
+					/>
+					<input
+						type="text"
+						placeholder="Link"
+						value={newItem.link}
+						onChange={(e) => setNewItem({ ...newItem, link: e.target.value })}
+						required
+					/>
+					<button type="submit">Add Item</button>
+				</form>
+			) : null}
 
 			{/* Display List of Products */}
 			<div className="products">
