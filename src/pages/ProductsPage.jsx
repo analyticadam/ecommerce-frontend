@@ -3,7 +3,6 @@ import axios from "axios"; // Import Axios for making HTTP requests
 import "../App.css"; // Import CSS for styling
 import { useLocation } from "react-router";
 import { getUser } from "../utilities/users-services";
-``;
 
 const BASE_URL = "http://localhost:5000/api"; // Updated to match backend server URL
 
@@ -28,27 +27,19 @@ const ProductsPage = () => {
 
 	// State for handling edit mode
 	const [editItem, setEditItem] = useState(null);
-	// async function fetchUser() {
-	// 	const userData = await getUser();
-	// 	setUser(userData);
-	// }
-	// fetchUser();
+
 	useEffect(() => {
-		console.log("useEffect");
 		async function fetchUser() {
-			console.log("Random");
-			const userData = await getUser();
-			console.log(userData);
-			setUser(userData);
+			try {
+				const userData = await getUser();
+				setUser(userData);
+			} catch (err) {
+				console.error("Failed to fetch user:", err.message);
+			}
 		}
-		return fetchUser();
-		// if (location.state?.user) {
-		// 	setUser(location.state.user);
-		// } else {
-		// 	fetchUser();
-		// }
+		fetchUser();
 	}, []);
-	console.log(user);
+
 	// Fetch existing items from the backend when the component mounts
 	useEffect(() => {
 		const fetchProducts = async () => {
@@ -123,9 +114,10 @@ const ProductsPage = () => {
 
 	return (
 		<div className="container">
-			<h1>Manage Products, {user.username}!</h1>
+			/{/* Display the user's username */}
+			<h1>Manage Products, {user ? user.username : "Guest"}!</h1>
 			{error && <p style={{ color: "red" }}>{error}</p>}
-
+			<br />
 			{/* Search for eBay Products */}
 			<div className="search-box">
 				<input
@@ -138,7 +130,7 @@ const ProductsPage = () => {
 					Search
 				</button>
 			</div>
-
+			<br />
 			{/* Form to Add New Item */}
 			<form onSubmit={handleAddItem}>
 				<h2>Add New Item</h2>
@@ -172,7 +164,7 @@ const ProductsPage = () => {
 				/>
 				<button type="submit">Add Item</button>
 			</form>
-
+			<br />
 			{/* Display List of Products */}
 			<div className="products">
 				{products.map((item) => (
