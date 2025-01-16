@@ -28,19 +28,27 @@ const ProductsPage = () => {
 
 	// State for handling edit mode
 	const [editItem, setEditItem] = useState(null);
+	// async function fetchUser() {
+	// 	const userData = await getUser();
+	// 	setUser(userData);
+	// }
+	// fetchUser();
 	useEffect(() => {
+		console.log("useEffect");
 		async function fetchUser() {
+			console.log("Random");
 			const userData = await getUser();
-			console.log(userData.username);
-			setUser(userData.username);
+			console.log(userData);
+			setUser(userData);
 		}
-		if (location.state?.user) {
-			setUser(location.state.user);
-		} else {
-			fetchUser();
-		}
-	}, [location]);
-
+		return fetchUser();
+		// if (location.state?.user) {
+		// 	setUser(location.state.user);
+		// } else {
+		// 	fetchUser();
+		// }
+	}, []);
+	console.log(user);
 	// Fetch existing items from the backend when the component mounts
 	useEffect(() => {
 		const fetchProducts = async () => {
@@ -115,7 +123,7 @@ const ProductsPage = () => {
 
 	return (
 		<div className="container">
-			<h1>Manage Products, {user}!</h1>
+			<h1>Manage Products, {user.username}!</h1>
 			{error && <p style={{ color: "red" }}>{error}</p>}
 
 			{/* Search for eBay Products */}
@@ -132,42 +140,38 @@ const ProductsPage = () => {
 			</div>
 
 			{/* Form to Add New Item */}
-			{user ? (
-				<form onSubmit={handleAddItem}>
-					<h2>Add New Item</h2>
-					<input
-						type="text"
-						placeholder="Title"
-						value={newItem.title}
-						onChange={(e) => setNewItem({ ...newItem, title: e.target.value })}
-						required
-					/>
-					<input
-						type="number"
-						placeholder="Price"
-						value={newItem.price}
-						onChange={(e) => setNewItem({ ...newItem, price: e.target.value })}
-						required
-					/>
-					<input
-						type="text"
-						placeholder="Currency"
-						value={newItem.currency}
-						onChange={(e) =>
-							setNewItem({ ...newItem, currency: e.target.value })
-						}
-						required
-					/>
-					<input
-						type="text"
-						placeholder="Link"
-						value={newItem.link}
-						onChange={(e) => setNewItem({ ...newItem, link: e.target.value })}
-						required
-					/>
-					<button type="submit">Add Item</button>
-				</form>
-			) : null}
+			<form onSubmit={handleAddItem}>
+				<h2>Add New Item</h2>
+				<input
+					type="text"
+					placeholder="Title"
+					value={newItem.title}
+					onChange={(e) => setNewItem({ ...newItem, title: e.target.value })}
+					required
+				/>
+				<input
+					type="number"
+					placeholder="Price"
+					value={newItem.price}
+					onChange={(e) => setNewItem({ ...newItem, price: e.target.value })}
+					required
+				/>
+				<input
+					type="text"
+					placeholder="Currency"
+					value={newItem.currency}
+					onChange={(e) => setNewItem({ ...newItem, currency: e.target.value })}
+					required
+				/>
+				<input
+					type="text"
+					placeholder="Link"
+					value={newItem.link}
+					onChange={(e) => setNewItem({ ...newItem, link: e.target.value })}
+					required
+				/>
+				<button type="submit">Add Item</button>
+			</form>
 
 			{/* Display List of Products */}
 			<div className="products">

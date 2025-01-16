@@ -47,4 +47,4 @@ export function logOut() {
 	localStorage.removeItem("token");
 }
 
-export default { login };
+export default { login, signUp };
