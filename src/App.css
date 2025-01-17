@@ -72,11 +72,29 @@ body {
 /* Main content */
 main {
 	margin-left: 200px; /* Leave space for the navbar */
-	margin-top: 220px; /* Leave space for the header */
+	margin-top: 200px; /* Leave space for the header */
 	padding: 20px;
-	min-height: calc(100vh - 80px); /* Fill available space */
+	min-height: calc(
+		100vh - 200px
+	); /* Ensure the main content fills the remaining height */
 	background-color: #ffffff; /* Light background for content */
 	overflow-y: auto; /* Allow scrolling */
+}
+
+.products {
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+	gap: 20px;
+	padding: 20px;
+}
+
+.product {
+	border: 1px solid #ddd;
+	padding: 10px;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	text-align: center;
+	background-color: #fff;
 }
 
 /* Responsive adjustments */
