@@ -22,8 +22,9 @@ const ProductsPage = () => {
 	}); // State for new item addition
 
 	useEffect(() => {
+		setUser(getUser());
 		console.log(user);
-	}, [user]);
+	}, []);
 
 	useEffect(() => {
 		const fetchProducts = async () => {
@@ -85,13 +86,10 @@ const ProductsPage = () => {
 
 	// Handle adding a product to the cart
 	const handleAddToCart = (product) => {
-		addItem(product); // Add the product to the cart
-		console.log("Product added to cart:", product); // Log the added product
-	};
-
-	return (
-		<div className="container">
-			{/* Conditionally render the header only if the user is available */}
+		// addItem(product); // Add the product to the cart
+		// console.log("Product added to cart:", product); // Log the added product
+		e.preventDefault(); // Prevent form submission
+		try {
 			{user && user.username && <h1>Manage Products, {user.username}!</h1>}
 			{error && <p style={{ color: "red" }}>{error}</p>}{" "}
 			{/* Display error messages */}
