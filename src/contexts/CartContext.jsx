@@ -8,6 +8,7 @@ const initialCartState = { items: [] };
 
 // Reducer function to handle actions related to the cart
 function cartReducer(state, action) {
+	console.log("this is the state" + state); // Log the current state for debugging
 	switch (action.type) {
 		case "ADD_ITEM":
 			// Find the index of the existing item in the cart

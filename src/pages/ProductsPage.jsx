@@ -4,6 +4,7 @@ import "../App.css";
 import { useLocation } from "react-router";
 import { getUser } from "../utilities/users-services";
 import { useCart } from "../contexts/CartContext"; // Import the useCart hook from CartContext
+import { use } from "react";
 
 const BASE_URL = "http://localhost:5000/api"; // Base URL for API requests
 
@@ -19,6 +20,10 @@ const ProductsPage = () => {
 		currency: "USD",
 		link: "",
 	}); // State for new item addition
+
+	useEffect(() => {
+		console.log(user);
+	}, [user]);
 
 	useEffect(() => {
 		const fetchProducts = async () => {

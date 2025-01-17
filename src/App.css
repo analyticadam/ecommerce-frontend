@@ -40,9 +40,8 @@ body {
 	position: fixed; /* Fixed to the left side */
 	top: 200px; /* Adjusted for the new header height */
 	left: 0;
-	overflow-y: auto; /* Allow vertical scrolling */
-	overflow-x: hidden; /* Prevent horizontal scrolling */
-	/* z-index: 1000; Keep above main content */
+	/* overflow-y: auto; /* Allow vertical scrolling */
+	/* overflow-x: hidden; Prevent horizontal scrolling */
 	padding: 10px;
 }
 
@@ -76,9 +75,19 @@ main {
 	padding: 20px;
 	min-height: calc(
 		100vh - 200px
-	); /* Ensure the main content fills the remaining height */
+	); /* Ensure the main content fills the remaining heigh t*/
 	background-color: #ffffff; /* Light background for content */
 	overflow-y: auto; /* Allow scrolling */
+}
+
+.flexitems {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-around;
+}
+
+.body-content {
+	margin-top: 500px;
 }
 
 .products {

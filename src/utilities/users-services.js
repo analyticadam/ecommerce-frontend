@@ -35,12 +35,22 @@ export function getToken() {
 	return token;
 }
 
+// Function to retrieve the user information from the stored token
 export function getUser() {
+	// Get the token from localStorage or another source (e.g., cookie)
 	const token = getToken();
-	// If there is a token, returns the user in the payload, otherwise it returns null
-	// The expression splits the token, parses the second part of it, and accesses the user key in the object
-	return token ? JSON.parse(atob(token.split(".")[1])).user : null;
-	// Returns the name and email from the payload
+	// If no token is found, return null to indicate the user is not authenticated
+	if (!token) return null;
+	try {
+		// Decode and parse the token (split by '.' to access the payload part, then decode and parse JSON)
+		const payload = JSON.parse(atob(token.split(".")[1]));
+		// Return the `user` object from the payload if it exists, otherwise return null
+		return payload.user || null;
+	} catch (error) {
+		// If there’s an error parsing the token (e.g., invalid format), log the error and return null
+		console.error("Error parsing token:", error);
+		return null;
+	}
 }
 
 export function logOut() {
