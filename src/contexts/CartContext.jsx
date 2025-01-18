@@ -1,4 +1,5 @@
 import React, { createContext, useReducer, useContext } from "react";
+import axios from "axios"; // Hema added
 
 // Create a context for managing cart data across the application
 const CartContext = createContext();
@@ -8,7 +9,8 @@ const initialCartState = { items: [] };
 
 // Reducer function to handle actions related to the cart
 function cartReducer(state, action) {
-	console.log("this is the state" + state); // Log the current state for debugging
+	// Log the current state for debugging
+	console.log("this is the state" + state);
 	switch (action.type) {
 		case "ADD_ITEM":
 			// Find the index of the existing item in the cart
@@ -45,8 +47,12 @@ export const CartProvider = ({ children }) => {
 	const [state, dispatch] = useReducer(cartReducer, initialCartState);
 
 	// Function to add an item to the cart
-	const addItem = (item) => {
+	const addItem = async (item) => {
 		console.log("Dispatching add item:", item); // Log action dispatch for debugging
+
+		// await axios.post('/api/cart/add', item); // Add the new item to the cart
+		await axios.post("http://localhost:5000/api/cart/add", item);
+
 		dispatch({ type: "ADD_ITEM", payload: item });
 	};
 
@@ -54,6 +60,10 @@ export const CartProvider = ({ children }) => {
 	const removeItem = (id) => {
 		console.log("Dispatching remove item:", id); // Log action dispatch for debugging
 		dispatch({ type: "REMOVE_ITEM", payload: id });
+
+		//await axios.post('http://localhost:5051/api/cart', { userId, 'item.ProductId', quantity });
+		// Hema changes end
+		dispatch({ type: "ADD_ITEM", payload: item });
 	};
 
 	return (

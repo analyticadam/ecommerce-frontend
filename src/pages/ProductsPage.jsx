@@ -20,11 +20,14 @@ const ProductsPage = () => {
 		currency: "USD",
 		link: "",
 	}); // State for new item addition
-
+	// const [newItem, setNewItem] = useState({
+	// 	title: "",
+	// 	price: ""
+	// }); // State for new item addition
+	const [quantities, setQuantities] = useState({});
 	useEffect(() => {
-		setUser(getUser());
 		console.log(user);
-	}, []);
+	}, [user]);
 
 	useEffect(() => {
 		const fetchProducts = async () => {
@@ -38,8 +41,14 @@ const ProductsPage = () => {
 			}
 		};
 		fetchProducts();
-	}, []); // Keep a single useEffect for fetching products
-
+	}, []);
+	// Keep a single useEffect for fetching products
+	const handleQuantityChange = (productId, newQuantity) => {
+		setQuantities({
+			...quantities,
+			[productId]: newQuantity,
+		});
+	};
 	// Handle adding a new item
 	const handleAddItem = async (e) => {
 		e.preventDefault(); // Prevent form submission
@@ -85,11 +94,28 @@ const ProductsPage = () => {
 	};
 
 	// Handle adding a product to the cart
+	const handleAddToCartold = (product) => {
+		addItem(product); // Add the product to the cart
+		console.log("Product added to cart:", product); // Log the added product
+	};
+	// HEMA ADDED ST
 	const handleAddToCart = (product) => {
-		// addItem(product); // Add the product to the cart
-		// console.log("Product added to cart:", product); // Log the added product
-		e.preventDefault(); // Prevent form submission
-		try {
+		// if (!user) {
+		//   setError("You must be logged in to add items to the cart.");
+		//   return;
+		// }
+		const cartItem = {
+			userId: "678b05ad4f60512a80c52a69", //user._id, // Assuming user object has _id field
+			productId: product._id, // Assuming product object has _id field
+			quantity: quantities[product._id] || 1, // Default quantity
+		};
+		addItem(cartItem);
+	};
+	// END
+
+	return (
+		<div className="container">
+			{/* Conditionally render the header only if the user is available */}
 			{user && user.username && <h1>Manage Products, {user.username}!</h1>}
 			{error && <p style={{ color: "red" }}>{error}</p>}{" "}
 			{/* Display error messages */}
@@ -180,6 +206,25 @@ const ProductsPage = () => {
 									>
 										View Product
 									</a>
+									<div>
+										<label htmlFor="quantity">Quantity: </label>
+										<select
+											id="quantity"
+											value={quantities[product._id] || 1}
+											onChange={(e) =>
+												handleQuantityChange(
+													product._id,
+													parseInt(e.target.value)
+												)
+											}
+										>
+											{[...Array(10).keys()].map((option) => (
+												<option key={option + 1} value={option + 1}>
+													{option + 1}
+												</option>
+											))}
+										</select>
+									</div>
 									<button onClick={() => handleAddToCart(product)}>
 										Add to Cart
 									</button>
