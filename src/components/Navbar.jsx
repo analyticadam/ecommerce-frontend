@@ -21,9 +21,15 @@ const Navbar = () => {
 				<li>
 					<Link to="/contact">Contact Us</Link>
 				</li>
+
+				{/* Login and Register links */}
 				<li>
-					<button>Login/Register</button>
+					<Link to="/login">Login</Link> {/* Link to Login page */}
 				</li>
+				<li>
+					<Link to="/register">Register</Link> {/* Link to Register page */}
+				</li>
+				{/* ) */}
 			</ul>
 		</nav>
 	);

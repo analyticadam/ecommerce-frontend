@@ -9,10 +9,12 @@ import CartPage from "./pages/CartPage";
 import PoliciesPage from "./pages/PoliciesPage";
 import ContactPage from "./pages/ContactPage";
 import { CartProvider } from "./contexts/CartContext"; // Import the Cart Context
+import LoginForm from "./components/Login";
+import SignUpForm from "./components/Register";
 // import { getUser } from "./utilities/users-services"; // Import the getUser function
 
 const App = () => {
-	// Check if the user is logged in
+	// Future feature: Manage logged-in state using `getUser` function
 	// const [user, setUser] = useState(getUser());
 
 	return (
@@ -34,6 +36,9 @@ const App = () => {
 							{/* Provides a route to view the cart */}
 							<Route path="/policies" element={<PoliciesPage />} />
 							<Route path="/contact" element={<ContactPage />} />
+							<Route path="/login" element={<LoginForm />} /> {/* Login page */}
+							<Route path="/register" element={<SignUpForm />} />{" "}
+							{/* Registration page */}
 						</Routes>
 					</CartProvider>
 				</div>

@@ -119,7 +119,7 @@ const ProductsPage = () => {
 			{user && user.username && <h1>Manage Products, {user.username}!</h1>}
 			{error && <p style={{ color: "red" }}>{error}</p>}{" "}
 			{/* Display error messages */}
-			{/* Form for adding a new item */}
+			{/* Form for adding a new item
 			<form onSubmit={handleAddItem}>
 				<h2>Add New Item</h2>
 				<input
@@ -151,7 +151,7 @@ const ProductsPage = () => {
 					required
 				/>
 				<button type="submit">Add Item</button>
-			</form>
+			</form> */}
 			{/* List of products */}
 			<div className="products">
 				{products.length > 0 ? (
@@ -228,10 +228,10 @@ const ProductsPage = () => {
 									<button onClick={() => handleAddToCart(product)}>
 										Add to Cart
 									</button>
-									<button onClick={() => setEditItem(product)}>Edit</button>
+									{/* <button onClick={() => setEditItem(product)}>Edit</button>
 									<button onClick={() => handleDeleteItem(product._id)}>
 										Delete
-									</button>
+									</button> */}
 								</>
 							)}
 						</div>

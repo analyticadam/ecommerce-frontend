@@ -20,8 +20,8 @@ const LandingPage = (props) => {
 					Shop Now
 				</button>
 			</header>
-			<SignUpForm className="signLogForm" setUser={props.setUser} />
-			<LoginForm className="signLogForm" setUser={props.setUser} />
+			{/* <SignUpForm className="signLogForm" setUser={props.setUser} />
+			<LoginForm className="signLogForm" setUser={props.setUser} /> */}
 		</div>
 	);
 };
