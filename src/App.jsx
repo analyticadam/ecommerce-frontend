@@ -1,4 +1,5 @@
 import React from "react";
+import { useState } from "react"; // Import the `useState` hook
 import { Router, Routes, Route } from "react-router"; // Ensure this matches your router imports
 import Navbar from "./components/Navbar";
 import Header from "./components/Header";
@@ -11,18 +12,18 @@ import ContactPage from "./pages/ContactPage";
 import { CartProvider } from "./contexts/CartContext"; // Import the Cart Context
 import LoginForm from "./components/Login";
 import SignUpForm from "./components/Register";
-// import { getUser } from "./utilities/users-services"; // Import the getUser function
+import { getUser } from "./utilities/users-services"; // Import the getUser function
 
 const App = () => {
 	// Future feature: Manage logged-in state using `getUser` function
-	// const [user, setUser] = useState(getUser());
+	const [user, setUser] = useState(getUser());
 
 	return (
 		<div>
 			<Header /> {/* Billboard displayed across all pages */}
 			<div className="flexitems">
 				<div>
-					<Navbar />
+					<Navbar user={user} setUser={setUser} />
 				</div>
 				<div className="body-content">
 					<CartProvider>
@@ -36,7 +37,11 @@ const App = () => {
 							{/* Provides a route to view the cart */}
 							<Route path="/policies" element={<PoliciesPage />} />
 							<Route path="/contact" element={<ContactPage />} />
-							<Route path="/login" element={<LoginForm />} /> {/* Login page */}
+							<Route
+								path="/login"
+								element={<LoginForm setUser={setUser} />}
+							/>{" "}
+							{/* Login page */}
 							<Route path="/register" element={<SignUpForm />} />{" "}
 							{/* Registration page */}
 						</Routes>

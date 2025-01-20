@@ -2,8 +2,7 @@ import { useState } from "react";
 import userServices from "../utilities/users-services";
 import { useNavigate } from "react-router"; // Allows for navigation without clicking
 
-function LoginForm() {
-	const [user, setUser] = useState("");
+function LoginForm({ setUser }) {
 	const [formData, setFormData] = useState({
 		username: "", // Changed "email" to "username" to match backend expectations
 		password: "",
@@ -28,8 +27,9 @@ function LoginForm() {
 			// Send credentials to the backend
 			const user = await userServices.login(credentials);
 			console.log("User received from backend:", user); // Log the response
-			setUser(user.username); // Update user state
-			navigate("/products/", { state: { user } }); // Navigate to Products page
+			setUser(user); // Update user state
+			console.log("User state updated:", user.username); // Log the updated state
+			navigate("/"); // Navigate to Products page
 		} catch (err) {
 			console.log("Error caught:", err); // Log the error
 			const errorMessage =
