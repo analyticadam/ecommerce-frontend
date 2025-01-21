@@ -17,7 +17,9 @@ const Navbar = ({ user, setUser }) => {
 				<li>
 					<Link to="/about">About Us</Link>
 				</li>
-
+				<li>
+					<Link to="/products">Products</Link>
+				</li>
 				<li>
 					<Link to="/policies">Policies</Link>
 				</li>
@@ -29,7 +31,7 @@ const Navbar = ({ user, setUser }) => {
 				{user ? (
 					<>
 						<li>
-							<Link to="/products">Products</Link>
+							<Link to="/cart">Shopping Cart</Link>
 						</li>
 						<li>
 							<Link to="/" onClick={handleLogOut}>
