@@ -9,6 +9,12 @@ const CartPage = ({ cart, fetchCart, removeItem, updateQuantity }) => {
 		fetchCart();
 	}, []);
 
+	const calculateTotal = () => {
+		return cart
+			.reduce((total, item) => total + item.productId.price * item.quantity, 0)
+			.toFixed(2);
+	};
+
 	return (
 		<div>
 			<h1>Your Shopping Cart</h1>
@@ -34,6 +40,9 @@ const CartPage = ({ cart, fetchCart, removeItem, updateQuantity }) => {
 					))}
 				</ul>
 			)}
+			<div className="cart-total">
+				<h2>Total: ${calculateTotal()}</h2>
+			</div>
 		</div>
 	);
 };
