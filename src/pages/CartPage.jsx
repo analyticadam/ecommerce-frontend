@@ -1,17 +1,11 @@
-import React, { useEffect } from "react";
-// import { useCart } from "../contexts/CartContext"; // Adjust path as necessary
-import { useCart } from "../utilities/cart-function"; // Import the useCart hook from cart-function.js
+import React from "react";
+import { useEffect } from "react";
 
 // Component to display the user's shopping cart
-const CartPage = ({ cart, removeItem, updateQuantity, fetchCart }) => {
-	// Function to handle updating an item's quantity
-	const handleUpdateItem = (itemId, quantity) => {
-		if (quantity > 0) {
-			updateQuantity(itemId, quantity);
-		}
-	};
+const CartPage = ({ cart, fetchCart, removeItem, updateQuantity }) => {
+	// Log cart items for debugging
+	console.log("Cart items:", cart);
 	useEffect(() => {
-		console.log(cart);
 		fetchCart();
 	}, []);
 
@@ -24,13 +18,15 @@ const CartPage = ({ cart, removeItem, updateQuantity, fetchCart }) => {
 				<ul>
 					{cart.map((item) => (
 						<li key={item.productId._id}>
-							<span>{item.productId.title}</span> - ${item.productId.price} x{" "}
+							{/* Display product title and price */}
+							<span>{item.productId.title || "No title"}</span> - $
+							{item.productId.price || "0"} x{" "}
 							<input
 								type="number"
-								value={item.productId.quantity}
+								value={item.quantity}
 								min="1"
 								onChange={(e) =>
-									handleUpdateItem(item.itemId, parseInt(e.target.value, 10))
+									updateQuantity(item._id, parseInt(e.target.value, 10))
 								}
 							/>
 							<button onClick={() => removeItem(item._id)}>Remove</button>
