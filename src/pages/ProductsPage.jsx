@@ -41,16 +41,20 @@ const ProductsPage = ({ user, addtoCart }) => {
 	}, []);
 
 	return (
-		<div className="products">
-			<h1>Available Products</h1>
-			{products.map((product) => (
-				<div key={product._id} className="product">
-					<h3>{product.title}</h3>
-					<p>${product.price.toFixed(2)}</p>
-					<button onClick={() => addtoCart(product)}>Add to Cart</button>
-				</div>
-			))}
-		</div>
+		<main>
+			<div className="products-header">
+				<h1>Available Products</h1>
+			</div>
+			<div className="products">
+				{products.map((product) => (
+					<div key={product._id} className="product">
+						<h3>{product.title}</h3>
+						<p>${product.price.toFixed(2)}</p>
+						<button onClick={() => addtoCart(product)}>Add to Cart</button>
+					</div>
+				))}
+			</div>
+		</main>
 	);
 };
 

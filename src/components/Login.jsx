@@ -42,11 +42,10 @@ function LoginForm({ setUser }) {
 		<>
 			<div className="signLogForm">
 				<br />
-				<p>Log In for Admin Access</p>
+				<p>Log In for User Access</p>
 				<br />
 				<form autoComplete="off" onSubmit={handleSubmit}>
 					<label>Username:</label>
-					<br />
 					<input
 						type="text"
 						name="username" // Changed "email" to "username"
@@ -55,9 +54,7 @@ function LoginForm({ setUser }) {
 						placeholder="Please enter your username for login"
 						required
 					/>
-					<br />
 					<label>Password:</label>
-					<br />
 					<input
 						type="password"
 						name="password"
@@ -66,7 +63,6 @@ function LoginForm({ setUser }) {
 						placeholder="Please Enter Password Here"
 						required
 					/>
-					<br />
 					<button type="submit">Log In Admin</button>
 				</form>
 				<p>{error}</p>

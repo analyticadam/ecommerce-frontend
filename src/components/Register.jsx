@@ -42,10 +42,8 @@ function SignUpForm(props) {
 		<>
 			<div className="signLogForm">
 				<p>Please register for an Account below</p>
-				<br />
 				<form autoComplete="off" onSubmit={handleSubmit}>
 					<label>Display Name:</label>
-					<br />
 					<input
 						type="text"
 						name="username" // Changed "name" to "username"
@@ -54,11 +52,9 @@ function SignUpForm(props) {
 						placeholder="Display Name"
 						required
 					/>
-					<br />
 					<label>
 						Please enter your e-mail address here: (must be a valid email)
 					</label>
-					<br />
 					<input
 						type="email"
 						name="email"
@@ -67,9 +63,7 @@ function SignUpForm(props) {
 						placeholder="Please enter your email address"
 						required
 					/>
-					<br />
 					<label>Password:</label>
-					<br />
 					<input
 						type="password"
 						name="password"
@@ -78,9 +72,7 @@ function SignUpForm(props) {
 						placeholder="Password"
 						required
 					/>
-					<br />
 					<label>Confirm Password:</label>
-					<br />
 					<input
 						type="password"
 						name="confirmPassword"
@@ -89,7 +81,6 @@ function SignUpForm(props) {
 						placeholder="Passwords must match"
 						required
 					/>
-					<br />
 					<button
 						type="submit"
 						disabled={formData.password !== formData.confirmPassword}

@@ -6,43 +6,41 @@
 }
 
 body {
-	font-family: Arial, sans-serif;
-	background-color: #f8f9fa;
+	font-family: Arial, sans-serif; /* Clean and readable font */
+	background-color: #f8f9fa; /* Light background for contrast */
 }
 
 /* Header styles */
 .header {
 	width: 100%; /* Full width of the viewport */
-	height: 200px; /* Increase height to show more of the image */
+	height: 150px; /* Adjust height to reduce space */
 	background: radial-gradient(circle, #237ba5, #000000),
-		url("public/images/eBay Store Billboard 1280x290 px.jpeg");
+		url("public/images/eBay Store Billboard 1280x290 px.jpeg"); /* Gradient and image background */
 	background-repeat: no-repeat;
 	background-position: center;
-	background-size: contain;
+	background-size: contain; /* Ensures the image fits properly */
 	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Add subtle shadow for depth */
-	position: fixed; /*Fixed at the top of the page */
+	position: fixed; /* Fixed at the top of the page */
 	top: 0;
 	left: 0;
-	/* z-index: 1100; Ensure it's above other elements */
 	display: flex;
-	align-items: center;
-	justify-content: center;
+	align-items: center; /* Center content vertically */
+	justify-content: center; /* Center content horizontally */
 	overflow: hidden; /* Ensure no unwanted overflow */
-	box-sizing: border-box;
+	z-index: 10; /* Ensure header is above other elements */
 }
 
 /* Navbar container */
 .navbar {
-	width: 200px; /* Fixed width */
-	height: calc(100vh - 150px); /* Full height minus the new header height */
-	background-color: #343a40; /* Dark background */
-	color: white;
+	width: 200px; /* Fixed width for sidebar */
+	height: calc(100vh - 150px); /* Full height minus the header height */
+	background-color: #343a40; /* Dark background for sidebar */
+	color: white; /* White text for contrast */
 	position: fixed; /* Fixed to the left side */
-	top: 200px; /* Adjusted for the new header height */
+	top: 150px; /* Matches header height */
 	left: 0;
-	/* overflow-y: auto; /* Allow vertical scrolling */
-	/* overflow-x: hidden; Prevent horizontal scrolling */
 	padding: 10px;
+	overflow-y: auto; /* Allow vertical scrolling if needed */
 }
 
 /* Navbar list styling */
@@ -55,68 +53,391 @@ body {
 	gap: 10px; /* Add spacing between links */
 }
 
-/* Navbar links */
 .navbar-list a {
-	color: white;
-	text-decoration: none;
-	font-size: 1rem;
+	color: white; /* White links for contrast */
+	text-decoration: none; /* Remove underline */
+	font-size: 1rem; /* Standard font size */
 	padding: 5px 10px; /* Add clickable area */
-	transition: color 0.3s ease-in-out;
+	transition: color 0.3s ease-in-out; /* Smooth color transition */
 }
 
 .navbar-list a:hover {
-	color: #007bff; /* Highlight color */
+	color: #007bff; /* Highlight color on hover */
 }
 
 /* Main content */
 main {
 	margin-left: 200px; /* Leave space for the navbar */
-	margin-top: 200px; /* Leave space for the header */
-	padding: 20px;
+	margin-top: 150px; /* Matches header height */
+	padding: 20px; /* Add padding inside the content area */
 	min-height: calc(
-		100vh - 200px
-	); /* Ensure the main content fills the remaining heigh t*/
+		100vh - 150px
+	); /* Ensure the main content fills the remaining height */
 	background-color: #ffffff; /* Light background for content */
-	overflow-y: auto; /* Allow scrolling */
+	overflow-y: auto; /* Allow scrolling for overflow content */
 }
 
-.flexitems {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: space-around;
-}
-
-.body-content {
-	margin-top: 500px;
-}
-
+/* Products Page Styling */
 .products {
-	display: grid;
-	grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-	gap: 20px;
-	padding: 20px;
+	margin-top: 0; /* Remove additional margin */
+	padding: 20px; /* Space around the products grid */
+	display: grid; /* Create a grid layout */
+	grid-template-columns: repeat(
+		auto-fill,
+		minmax(200px, 1fr)
+	); /* Responsive column layout */
+	gap: 20px; /* Space between grid items */
+	background-color: #f8f9fa; /* Light background */
 }
 
 .product {
-	border: 1px solid #ddd;
+	border: 1px solid #ddd; /* Subtle border around product cards */
+	padding: 15px; /* Internal spacing */
+	border-radius: 10px; /* Rounded corners */
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+	text-align: center; /* Center text */
+	transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effects */
+	background-color: #ffffff; /* White background for product cards */
+}
+
+.product:hover {
+	transform: translateY(-5px); /* Lift the card on hover */
+	box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+}
+
+.product h3 {
+	font-size: 1.2rem; /* Product title size */
+	margin-bottom: 10px; /* Space below title */
+	color: #343a40; /* Dark text color */
+}
+
+.product p {
+	font-size: 1rem; /* Price text size */
+	margin-bottom: 15px; /* Space below price */
+	color: #6c757d; /* Subtle text color */
+}
+
+.product button {
+	background-color: #007bff; /* Primary button color */
+	color: #ffffff; /* White text */
+	border: none; /* Remove border */
+	padding: 10px 15px; /* Internal button padding */
+	border-radius: 5px; /* Rounded button corners */
+	cursor: pointer; /* Pointer cursor on hover */
+	font-size: 0.9rem; /* Button text size */
+	transition: background-color 0.3s; /* Smooth color transition */
+}
+
+.product button:hover {
+	background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Cart Page Styling */
+.products-header {
+	text-align: center; /* Center text */
+}
+
+/* Cart Page Styling */
+.cart {
+	margin-top: 0; /* Align with main content */
+	padding: 20px; /* Internal padding */
+	background-color: #ffffff; /* White background */
+	border-radius: 10px; /* Rounded corners */
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+.cart h1 {
+	font-size: 2rem; /* Heading size */
+	margin-bottom: 20px; /* Space below heading */
+	color: #343a40; /* Dark text color */
+}
+
+.cart p {
+	font-size: 1.2rem; /* Paragraph text size */
+	color: #6c757d; /* Subtle text color */
+}
+
+.cart ul {
+	list-style: none; /* Remove bullets */
+	padding: 0; /* Remove padding */
+}
+
+.cart li {
+	display: flex; /* Flex layout for cart items */
+	justify-content: space-between; /* Space between item elements */
+	align-items: center; /* Align items vertically */
+	padding: 10px; /* Internal padding */
+	border-bottom: 1px solid #ddd; /* Subtle separator */
+}
+
+.cart li span {
+	font-size: 1rem; /* Item text size */
+	color: #495057; /* Dark text color */
+}
+
+.cart input[type="number"] {
+	width: 60px; /* Input field width */
+	padding: 5px; /* Internal padding */
+	border: 1px solid #ddd; /* Subtle border */
+	border-radius: 5px; /* Rounded corners */
+}
+
+.cart button {
+	background-color: #dc3545; /* Red button color */
+	color: #ffffff; /* White text */
+	border: none; /* Remove border */
+	padding: 5px 10px; /* Internal padding */
+	border-radius: 5px; /* Rounded corners */
+	cursor: pointer; /* Pointer cursor */
+	transition: background-color 0.3s; /* Smooth hover effect */
+}
+
+.cart button:hover {
+	background-color: #bd2130; /* Darker red on hover */
+}
+
+.cart-total {
+	text-align: right; /* Align total to the right */
+	margin-top: 20px; /* Space above total */
+	font-size: 1.5rem; /* Total text size */
+	color: #343a40; /* Dark text color */
+}
+
+/* Center the form on the page */
+.login-page {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100vh; /* Full viewport height */
+	background-color: #f8f9fa; /* Light background color */
+	padding: 20px;
+}
+
+/* Title styling */
+.login-title {
+	font-size: 2rem;
+	margin-bottom: 20px;
+	color: #343a40;
+}
+
+/* Form container */
+.login-form {
+	display: flex;
+	flex-direction: column;
+	gap: 15px; /* Space between form elements */
+	width: 100%;
+	max-width: 400px; /* Restrict the form width */
+	padding: 20px;
+	border: 1px solid #ddd; /* Subtle border */
+	border-radius: 10px; /* Rounded corners */
+	background-color: #ffffff; /* White background */
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Login Form Container */
+.signLogForm {
+	display: flex; /* Flexbox layout */
+	flex-direction: column; /* Stack children vertically */
+	align-items: center; /* Center horizontally */
+	justify-content: center; /* Center vertically */
+	height: 100vh; /* Full viewport height */
+	background-color: #f8f9fa; /* Light background color */
+	padding: 20px; /* Space around the container */
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Title and Description */
+.signLogForm p {
+	font-size: 1.5rem; /* Slightly larger font */
+	color: #343a40; /* Dark text color */
+	margin-bottom: 20px; /* Space below the text */
+	text-align: center; /* Center the text */
+}
+
+/* Form Styling */
+.signLogForm form {
+	display: flex; /* Flexbox layout */
+	flex-direction: column; /* Stack inputs vertically */
+	gap: 15px; /* Space between form elements */
+	width: 100%;
+	max-width: 400px; /* Restrict form width */
+}
+
+/* Label Styling */
+.signLogForm label {
+	font-size: 1rem; /* Standard font size */
+	color: #495057; /* Subtle text color */
+}
+
+/* Input Fields */
+.signLogForm input {
+	width: 100%;
 	padding: 10px;
+	border: 1px solid #ddd; /* Subtle border */
+	border-radius: 5px; /* Rounded corners */
+	font-size: 1rem;
+	box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
+}
+
+/* Button Styling */
+.signLogForm button {
+	padding: 10px 15px;
+	background-color: #007bff; /* Primary blue */
+	color: #ffffff; /* White text */
+	border: none;
 	border-radius: 5px;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-	text-align: center;
-	background-color: #fff;
+	font-size: 1rem;
+	cursor: pointer; /* Pointer cursor on hover */
+	transition: background-color 0.3s ease-in-out; /* Smooth transition */
+}
+
+.signLogForm button:hover {
+	background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Error Message Styling */
+.signLogForm p:last-of-type {
+	color: #dc3545; /* Red for errors */
+	font-size: 0.9rem; /* Slightly smaller font */
+	text-align: center; /* Center align */
+	margin-top: 10px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+	.signLogForm {
+		padding: 10px; /* Adjust padding for smaller screens */
+	}
+
+	.signLogForm form {
+		max-width: 90%; /* Allow form to fill most of the screen */
+	}
+}
+
+/* Styling for the Registration Form Container */
+.signLogForm {
+	display: flex; /* Use Flexbox layout */
+	flex-direction: column; /* Stack children vertically */
+	align-items: center; /* Center horizontally */
+	justify-content: center; /* Center vertically */
+	height: 100vh; /* Full viewport height */
+	background-color: #f8f9fa; /* Light background for readability */
+	padding: 20px; /* Space around the container */
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Title Styling */
+.signLogForm p {
+	font-size: 1.5rem; /* Slightly larger font */
+	color: #343a40; /* Dark text color */
+	margin-bottom: 20px; /* Add space below title */
+	text-align: center; /* Center the text */
+}
+
+/* Form Styling */
+.signLogForm form {
+	display: flex; /* Use Flexbox for the form layout */
+	flex-direction: column; /* Stack inputs vertically */
+	gap: 15px; /* Space between form elements */
+	width: 100%; /* Form takes full width */
+	max-width: 400px; /* Restrict maximum width of the form */
+}
+
+/* Label Styling */
+.signLogForm label {
+	font-size: 1rem; /* Standard font size */
+	color: #495057; /* Subtle text color */
+}
+
+/* Input Fields Styling */
+.signLogForm input {
+	width: 100%; /* Inputs take full width */
+	padding: 10px; /* Internal padding for better usability */
+	border: 1px solid #ddd; /* Subtle border for structure */
+	border-radius: 5px; /* Rounded corners for aesthetics */
+	font-size: 1rem; /* Standard font size */
+	box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1); /* Inner shadow for depth */
+}
+
+/* Button Styling */
+.signLogForm button {
+	padding: 10px 15px; /* Internal button padding */
+	background-color: #007bff; /* Primary blue for the button */
+	color: #ffffff; /* White text for contrast */
+	border: none; /* Remove default borders */
+	border-radius: 5px; /* Rounded corners for aesthetics */
+	font-size: 1rem; /* Button text size */
+	cursor: pointer; /* Pointer cursor on hover */
+	transition: background-color 0.3s ease-in-out; /* Smooth color transition on hover */
+}
+
+/* Hover effect for the button */
+.signLogForm button:hover {
+	background-color: #0056b3; /* Darker blue on hover */
+}
+
+/* Disabled Button Styling */
+.signLogForm button:disabled {
+	background-color: #6c757d; /* Gray color for disabled state */
+	cursor: not-allowed; /* Show 'not-allowed' cursor */
+}
+
+/* Error Message Styling */
+.signLogForm p:last-of-type {
+	color: #dc3545; /* Red color for error messages */
+	font-size: 0.9rem; /* Slightly smaller font */
+	text-align: center; /* Center-align the text */
+	margin-top: 10px; /* Add space above error message */
+}
+
+/* Responsive Design for Smaller Screens */
+@media (max-width: 768px) {
+	.signLogForm {
+		padding: 10px; /* Reduce padding for smaller devices */
+	}
+
+	.signLogForm form {
+		max-width: 90%; /* Form takes up most of the screen width */
+	}
+}
+
+/* Input fields */
+.form-control {
+	width: 100%;
+	padding: 10px;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	font-size: 1rem;
+}
+
+/* Submit button */
+.login-button {
+	padding: 10px 15px;
+	background-color: #007bff;
+	color: #ffffff;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 1rem;
+	transition: background-color 0.3s;
+}
+
+.login-button:hover {
+	background-color: #0056b3; /* Darker blue on hover */
 }
 
 /* Responsive adjustments */
 @media (max-width: 768px) {
 	.navbar {
-		position: static;
-		width: 100%;
-		height: auto;
-		top: auto;
+		position: static; /* Position navbar below header */
+		width: 100%; /* Full width for small screens */
+		height: auto; /* Adjust height dynamically */
+		top: auto; /* Reset top alignment */
 	}
 
 	main {
-		margin-left: 0;
-		margin-top: 80px;
+		margin-left: 0; /* Remove left margin */
+		margin-top: 80px; /* Adjust top margin */
 	}
 }
