@@ -441,3 +441,91 @@ main {
 		margin-top: 80px; /* Adjust top margin */
 	}
 }
+
+/* About Page container styling */
+.about-us {
+	padding: 20px; /* Add padding for readability */
+	margin: auto; /* Center the container horizontally */
+	text-align: left; /* Align text to the left for natural reading */
+	line-height: 1.8; /* Increase line spacing for better readability */
+	max-width: 900px; /* Limit content width for large screens */
+	background-color: #ffffff; /* White background for contrast */
+	border-radius: 10px; /* Rounded corners for aesthetics */
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+	overflow-y: auto; /* Enable vertical scrolling if content overflows */
+}
+
+/* About Page title styling */
+.about-us h1 {
+	text-align: center; /* Center-align the title */
+	color: #343a40; /* Dark gray for contrast */
+	margin-bottom: 20px; /* Space below the title */
+}
+
+/* Section headers styling */
+.about-us h2 {
+	color: #007bff; /* Blue for section headers */
+	margin-top: 20px; /* Space above each header */
+	text-align: center; /* Center-align section headers */
+}
+
+/* Paragraph text styling */
+.about-us p {
+	color: #495057; /* Subtle dark gray for text */
+	margin-bottom: 15px; /* Space below paragraphs */
+}
+
+/* Social media links container */
+.social-links {
+	padding: 0; /* Remove default padding */
+	list-style: none; /* Remove bullets */
+	text-align: center; /* Center-align links */
+	margin: 20px 0; /* Add spacing around the links */
+}
+
+/* Individual social link styling */
+.social-links li {
+	display: inline-block; /* Arrange links horizontally */
+	margin-right: 15px; /* Space between links */
+}
+
+.social-links li a {
+	display: flex; /* Align icon and text horizontally */
+	align-items: center; /* Vertically center icon and text */
+	color: #007bff; /* Default color for links */
+	text-decoration: none; /* Remove underline */
+	font-weight: bold; /* Bold text for visibility */
+	font-size: 1.2rem; /* Slightly larger font size */
+	transition: color 0.3s ease; /* Smooth hover effect */
+}
+
+/* Icon styling for social links */
+.social-links li a i {
+	margin-right: 8px; /* Space between icon and text */
+	font-size: 1.5rem; /* Larger icon size */
+}
+
+/* Hover effect for social links */
+.social-links li a:hover {
+	color: #0056b3; /* Darker blue on hover */
+}
+
+/* Responsive design for About Page */
+@media (max-width: 768px) {
+	.about-us {
+		padding: 10px; /* Reduce padding for smaller screens */
+		max-width: 100%; /* Allow full width on small screens */
+	}
+
+	/* Stack social links vertically for smaller screens */
+	.social-links {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 10px; /* Add spacing between links */
+	}
+
+	.social-links li {
+		margin-right: 0; /* Remove margin between links */
+	}
+}
