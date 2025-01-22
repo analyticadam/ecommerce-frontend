@@ -3,8 +3,9 @@ import { Router, Link } from "react-router";
 import "../App.css"; // Import styles here
 import { logOut } from "../utilities/users-services"; // Import the `logout` function
 
-const Navbar = ({ user, setUser }) => {
+const Navbar = ({ user, setUser, deleteCart }) => {
 	function handleLogOut() {
+		deleteCart(); // Delete the cart before logging out
 		logOut(); // Log the user out
 		setUser(null); // Clear the user state
 	}

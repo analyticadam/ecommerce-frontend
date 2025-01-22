@@ -2,18 +2,21 @@ import React from "react";
 
 /**
  * AboutPage Component
- * Renders the About Us section for the website, ensuring consistent styling across pages.
+ * Renders the About Us section for the website, ensuring consistent styling and incorporating scrolling functionality.
  */
 const AboutPage = () => {
 	return (
-		<main>
-			{/* Page Title */}
-			<h1 className="about-title">About Us</h1>
+		<div className="about-scroll-container">
+			<main className="about-us">
+				{/* Page Title */}
+				<h1>About Us</h1>
 
-			{/* Welcome Message */}
-			<div className="about-us">
+				{/* Welcome Message */}
+				<br />
+				<br />
 				<p>
 					<strong>Welcome to Big Thrifting!</strong>
+					<br />
 					<br />
 					Big Thrifting is a one-person operation fueled by a passion for
 					uncovering unique finds and sharing them with others. Whether it’s
@@ -37,38 +40,38 @@ const AboutPage = () => {
 				<ul className="social-links">
 					<li>
 						<a
-							href="https://tiktok.com/your-profile"
+							href="https://tiktok.com/@bigthrifting"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							TikTok
+							<i className="fab fa-tiktok"></i> TikTok
 						</a>
 					</li>
 					<li>
 						<a
-							href="https://instagram.com/your-profile"
+							href="https://instagram.com/bigthrifting2022"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							Instagram
+							<i className="fab fa-instagram"></i> Instagram
 						</a>
 					</li>
 					<li>
 						<a
-							href="https://facebook.com/your-profile"
+							href="https://www.facebook.com/share/18go7qzG9p/?mibextid=wwXIfr"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							Facebook
+							<i className="fab fa-facebook"></i> Facebook
 						</a>
 					</li>
 					<li>
 						<a
-							href="https://youtube.com/your-channel"
+							href="https://www.youtube.com/@bigthrifting5715"
 							target="_blank"
 							rel="noopener noreferrer"
 						>
-							YouTube
+							<i className="fab fa-youtube"></i> YouTube
 						</a>
 					</li>
 				</ul>
@@ -90,8 +93,8 @@ const AboutPage = () => {
 					respond to every message and love hearing from fellow thrifting
 					enthusiasts.
 				</p>
-			</div>
-		</main>
+			</main>
+		</div>
 	);
 };
 

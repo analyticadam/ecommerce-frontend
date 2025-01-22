@@ -13,21 +13,22 @@ import { useCart } from "./utilities/cart-function.js"; // Import cart utility f
 import LoginForm from "./components/Login"; // Import LoginForm component
 import SignUpForm from "./components/Register"; // Import SignUpForm component
 import { getUser } from "./utilities/users-services"; // Import the getUser function
+import "@fortawesome/fontawesome-free/css/all.min.css"; // Import the FontAwesome icons
+import "./App.css"; // Import the App.css file
 
 const App = () => {
 	// Manage logged-in state using `getUser` function
 	const [user, setUser] = useState(getUser());
-	const { cart, fetchCart, addtoCart, removeItem, updateQuantity } = useCart(
-		user?._id
-	);
+	const { cart, fetchCart, addtoCart, removeItem, updateQuantity, deleteCart } =
+		useCart(user?._id);
 
 	return (
 		<CartProvider>
 			{" "}
 			{/* Provides cart state to all components within the app */}
 			<Header /> {/* Billboard displayed across all pages */}
-			<div className="flexitems">
-				<Navbar user={user} setUser={setUser} />{" "}
+			<div className="">
+				<Navbar user={user} setUser={setUser} deleteCart={deleteCart} />{" "}
 				{/* Navbar with user and setUser props */}
 				<div className="body-content">
 					<Routes>

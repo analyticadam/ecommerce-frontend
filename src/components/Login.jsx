@@ -63,7 +63,7 @@ function LoginForm({ setUser }) {
 						placeholder="Please Enter Password Here"
 						required
 					/>
-					<button type="submit">Log In Admin</button>
+					<button type="submit">Log In User</button>
 				</form>
 				<p>{error}</p>
 			</div>

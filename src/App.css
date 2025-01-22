@@ -137,49 +137,78 @@ main {
 	text-align: center; /* Center text */
 }
 
-/* Cart Page Styling */
+/* Shopping Cart Container */
 .cart {
-	margin-top: 0; /* Align with main content */
-	padding: 20px; /* Internal padding */
+	margin: 20px auto; /* Center the cart horizontally */
+	padding: 20px; /* Add internal spacing */
+	max-width: 800px; /* Limit the width for better readability */
 	background-color: #ffffff; /* White background */
 	border-radius: 10px; /* Rounded corners */
 	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+	font-family: Arial, sans-serif; /* Consistent font */
 }
 
+/* Heading */
 .cart h1 {
-	font-size: 2rem; /* Heading size */
-	margin-bottom: 20px; /* Space below heading */
-	color: #343a40; /* Dark text color */
+	text-align: center; /* Center the heading */
+	font-size: 2rem; /* Larger font size */
+	color: #343a40; /* Dark gray text color */
+	margin-bottom: 20px; /* Add space below */
 }
 
+/* Empty Cart Message */
 .cart p {
-	font-size: 1.2rem; /* Paragraph text size */
-	color: #6c757d; /* Subtle text color */
+	text-align: center; /* Center the message */
+	font-size: 1.2rem; /* Slightly larger font */
+	color: #6c757d; /* Subtle gray color */
 }
 
+/* Cart Items List */
 .cart ul {
 	list-style: none; /* Remove bullets */
 	padding: 0; /* Remove padding */
+	margin: 0; /* Remove margin */
 }
 
+/* Individual Cart Item */
 .cart li {
-	display: flex; /* Flex layout for cart items */
-	justify-content: space-between; /* Space between item elements */
-	align-items: center; /* Align items vertically */
-	padding: 10px; /* Internal padding */
-	border-bottom: 1px solid #ddd; /* Subtle separator */
+	display: flex; /* Flexbox for alignment */
+	justify-content: space-between; /* Spread content evenly */
+	align-items: center; /* Align vertically */
+	padding: 10px 0; /* Add spacing */
+	border-bottom: 1px solid #ddd; /* Separator between items */
 }
 
+/* Remove Button */
+.cart li button {
+	background-color: #dc3545; /* Red button */
+	color: #ffffff; /* White text */
+	border: none; /* Remove border */
+	padding: 5px 10px; /* Add internal padding */
+	border-radius: 5px; /* Rounded corners */
+	cursor: pointer; /* Pointer cursor on hover */
+	font-size: 0.9rem; /* Smaller font size */
+	transition: background-color 0.3s; /* Smooth hover effect */
+}
+
+.cart li button:hover {
+	background-color: #bd2130; /* Darker red on hover */
+}
+
+/* Product Title and Price */
 .cart li span {
-	font-size: 1rem; /* Item text size */
-	color: #495057; /* Dark text color */
+	font-size: 1rem; /* Standard font size */
+	color: #343a40; /* Dark text color */
 }
 
-.cart input[type="number"] {
-	width: 60px; /* Input field width */
-	padding: 5px; /* Internal padding */
+/* Quantity Input */
+.cart li input[type="number"] {
+	width: 60px; /* Fixed width */
+	padding: 5px; /* Add internal padding */
+	font-size: 1rem; /* Standard font size */
 	border: 1px solid #ddd; /* Subtle border */
 	border-radius: 5px; /* Rounded corners */
+	text-align: center; /* Center-align the value */
 }
 
 .cart button {
@@ -196,11 +225,13 @@ main {
 	background-color: #bd2130; /* Darker red on hover */
 }
 
+/* Total Section */
 .cart-total {
 	text-align: right; /* Align total to the right */
-	margin-top: 20px; /* Space above total */
-	font-size: 1.5rem; /* Total text size */
+	font-size: 1.5rem; /* Larger font size */
 	color: #343a40; /* Dark text color */
+	margin-top: 20px; /* Add space above */
+	font-weight: bold; /* Emphasize the total */
 }
 
 /* Center the form on the page */
@@ -430,79 +461,88 @@ main {
 /* Responsive adjustments */
 @media (max-width: 768px) {
 	.navbar {
-		position: static; /* Position navbar below header */
-		width: 100%; /* Full width for small screens */
-		height: auto; /* Adjust height dynamically */
-		top: auto; /* Reset top alignment */
+		position: fixed;
+		width: 100%; /* Expand navbar width */
+		height: auto; /* Allow dynamic height */
+		top: 150px; /* Below the header */
 	}
-
 	main {
 		margin-left: 0; /* Remove left margin */
-		margin-top: 80px; /* Adjust top margin */
+		margin-top: 150px; /* Adjust top margin */
 	}
 }
 
-/* About Page container styling */
-.about-us {
-	padding: 20px; /* Add padding for readability */
-	margin: auto; /* Center the container horizontally */
-	text-align: left; /* Align text to the left for natural reading */
-	line-height: 1.8; /* Increase line spacing for better readability */
-	max-width: 900px; /* Limit content width for large screens */
-	background-color: #ffffff; /* White background for contrast */
-	border-radius: 10px; /* Rounded corners for aesthetics */
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-	overflow-y: auto; /* Enable vertical scrolling if content overflows */
+.about-scroll-container {
+	height: calc(100vh - 150px); /* Full viewport height minus header */
+	min-height: 100vh; /* Ensure minimum height */
+	overflow-y: auto; /* Enable vertical scrolling */
+	padding: 20px; /* Add spacing */
+	box-sizing: border-box; /* Include padding in height calculation */
 }
 
-/* About Page title styling */
+/* Responsive adjustments for the About Page */
+@media (max-width: 768px) {
+	.about-us {
+		padding: 1rem; /* Smaller padding for narrow screens */
+		margin: 0.5rem; /* Adjust margin for smaller screens */
+	}
+
+	.about-scroll-container {
+		height: auto; /* Allow it to adapt to smaller screens */
+	}
+}
+
+/* About Us Page Styling */
+.about-us {
+	padding: 2rem; /* Add padding for better readability */
+	margin: 2rem auto; /* Center content horizontally */
+	max-width: 900px; /* Limit content width */
+	background-color: #ffffff; /* Set a clean background */
+	border-radius: 10px; /* Add rounded corners */
+	box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add subtle shadow */
+	text-align: left; /* Left-align text for better readability */
+	padding-bottom: 30px; /* Adjust for breathing room */
+}
+
+/* Page Title Styling */
 .about-us h1 {
-	text-align: center; /* Center-align the title */
-	color: #343a40; /* Dark gray for contrast */
+	text-align: center; /* Center the page title */
+	color: #343a40; /* Dark gray color for contrast */
 	margin-bottom: 20px; /* Space below the title */
 }
 
-/* Section headers styling */
-.about-us h2 {
-	color: #007bff; /* Blue for section headers */
-	margin-top: 20px; /* Space above each header */
-	text-align: center; /* Center-align section headers */
+/* Optionally reduce h1 size as well */
+.about-us h1 {
+	text-align: center; /* Center the page title */
+	color: #343a40; /* Dark gray color for contrast */
+	margin-bottom: 20px; /* Space below the title */
+	font-size: 2rem; /* Slightly smaller page title */
 }
 
-/* Paragraph text styling */
+/* Paragraph Styling */
 .about-us p {
-	color: #495057; /* Subtle dark gray for text */
-	margin-bottom: 15px; /* Space below paragraphs */
+	color: #495057; /* Subtle gray for text */
+	line-height: 1.8; /* Increased line spacing for readability */
+	margin-bottom: 15px; /* Space below each paragraph */
 }
 
-/* Social media links container */
+/* Styling for the social media links */
 .social-links {
-	padding: 0; /* Remove default padding */
 	list-style: none; /* Remove bullets */
-	text-align: center; /* Center-align links */
-	margin: 20px 0; /* Add spacing around the links */
+	display: flex; /* Align links in a row */
+	justify-content: center; /* Center the links */
+	gap: 20px; /* Add space between links */
+	padding: 0;
+	margin-top: 15px; /* Add some spacing above */
 }
 
 /* Individual social link styling */
-.social-links li {
-	display: inline-block; /* Arrange links horizontally */
-	margin-right: 15px; /* Space between links */
-}
-
 .social-links li a {
-	display: flex; /* Align icon and text horizontally */
-	align-items: center; /* Vertically center icon and text */
-	color: #007bff; /* Default color for links */
+	color: #007bff; /* Blue color for links */
 	text-decoration: none; /* Remove underline */
-	font-weight: bold; /* Bold text for visibility */
-	font-size: 1.2rem; /* Slightly larger font size */
-	transition: color 0.3s ease; /* Smooth hover effect */
-}
-
-/* Icon styling for social links */
-.social-links li a i {
-	margin-right: 8px; /* Space between icon and text */
-	font-size: 1.5rem; /* Larger icon size */
+	font-weight: bold; /* Make links bold */
+	font-size: 1.2rem; /* Adjust font size for better visibility */
+	transition: color 0.3s ease; /* Smooth color transition */
 }
 
 /* Hover effect for social links */
@@ -510,22 +550,14 @@ main {
 	color: #0056b3; /* Darker blue on hover */
 }
 
-/* Responsive design for About Page */
+/* Styling for social media icons */
+.social-links li a i {
+	margin-right: 5px; /* Add space between icon and text */
+}
+
 @media (max-width: 768px) {
-	.about-us {
-		padding: 10px; /* Reduce padding for smaller screens */
-		max-width: 100%; /* Allow full width on small screens */
-	}
-
-	/* Stack social links vertically for smaller screens */
 	.social-links {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 10px; /* Add spacing between links */
-	}
-
-	.social-links li {
-		margin-right: 0; /* Remove margin between links */
+		flex-direction: column; /* Stack links vertically */
+		align-items: center; /* Center-align stacked links */
 	}
 }

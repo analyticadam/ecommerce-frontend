@@ -25,7 +25,7 @@ const CartPage = ({ cart, fetchCart, removeItem, updateQuantity }) => {
 					<ul>
 						{cart.map((item) => (
 							<li key={item.productId._id}>
-								<span>{item.productId.title}</span> - ${item.productId.price} x{" "}
+								<span>{item.productId.title}</span> ${item.productId.price} x{" "}
 								<input
 									type="number"
 									value={item.quantity}
@@ -34,7 +34,12 @@ const CartPage = ({ cart, fetchCart, removeItem, updateQuantity }) => {
 										updateQuantity(item._id, parseInt(e.target.value, 10))
 									}
 								/>
-								<button onClick={() => removeItem(item._id)}>Remove</button>
+								<button
+									onClick={() => removeItem(item._id)}
+									aria-label={`Remove ${item.productId.title} from cart`}
+								>
+									Remove
+								</button>
 							</li>
 						))}
 					</ul>

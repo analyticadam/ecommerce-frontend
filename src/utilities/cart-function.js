@@ -121,11 +121,47 @@ export const useCart = (userId) => {
 		}
 	};
 
+	const deleteCart = async () => {
+		try {
+			console.log(cart);
+			console.log(cart.length);
+			// Ensure cart and cart.items are defined and check if it's empty
+			if (cart.length === 0) {
+				console.log(cart);
+				// If the cart is empty, delete it automatically without asking
+				const response = await axios.delete(`${BASE_URL}/cart/${userId}`);
+				if (response.status === 200) {
+					setCart([]); // Clear the cart state
+					console.log("Cart is empty. Deleted automatically.");
+				}
+				return; // Exit after deleting the empty cart
+			}
+
+			// If the cart is not empty, ask the user for confirmation
+			const confirmDelete = window.confirm(
+				"Your cart is not empty. Do you want to delete it before logging out?"
+			);
+
+			if (!confirmDelete) return; // Exit if the user cancels
+
+			// Proceed to delete the cart if the user confirms
+			const response = await axios.delete(`${BASE_URL}/cart/${userId}`);
+
+			if (response.status === 200) {
+				setCart([]); // Clear the cart state
+				alert("Cart successfully deleted.");
+			}
+		} catch (err) {
+			console.error("Error deleting cart:", err);
+		}
+	};
+
 	return {
 		cart,
 		fetchCart,
 		addtoCart,
 		removeItem,
 		updateQuantity,
+		deleteCart,
 	};
 };
