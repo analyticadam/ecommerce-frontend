@@ -5,6 +5,7 @@ import Header from "./components/Header"; // Import Header component
 import LandingPage from "./pages/LandingPage"; // Import LandingPage component
 import AboutPage from "./pages/AboutPage"; // Import AboutPage component
 import ProductsPage from "./pages/ProductsPage"; // Import ProductsPage component
+import CreateProducts from "./pages/CreateProducts"; // Import CreateProducts component
 import CartPage from "./pages/CartPage"; // Import CartPage component
 import PoliciesPage from "./pages/PoliciesPage"; // Import PoliciesPage component
 import ContactPage from "./pages/ContactPage"; // Import ContactPage component
@@ -52,6 +53,9 @@ const App = () => {
 								/>
 							}
 						/>
+						<Route path="/products/create" element={<CreateProducts />} />
+						{/* <Route path="/products/delete" element={<DeleteProducts />} />
+						<Route path="/products/update" element={<UpdateProducts />} /> */}
 						{/* Provides a route to view the cart */}
 						<Route path="/policies" element={<PoliciesPage />} />{" "}
 						{/* Route for PoliciesPage */}

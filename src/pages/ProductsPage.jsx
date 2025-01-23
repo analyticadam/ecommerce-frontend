@@ -31,7 +31,7 @@ const ProductsPage = ({ user, addtoCart }) => {
 	useEffect(() => {
 		const fetchProducts = async () => {
 			try {
-				const response = await axios.get("http://localhost:5000/api/items");
+				const response = await axios.get("http://localhost:5000/api/products");
 				setProducts(response.data);
 			} catch (err) {
 				console.error("Failed to fetch products:", err.message);
